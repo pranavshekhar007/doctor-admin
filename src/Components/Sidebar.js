@@ -243,7 +243,7 @@ function Sidebar({ selectedMenu, selectedItem }) {
         <div className="brandLogo d-flex justify-content-center align-items-center py-4 px-3">
           <img
             className="img-fluid"
-            src="/doctorLogo.png"
+            src="/DoctorLogo.png"
             alt="Doctor Logo"
             style={{ maxWidth: "100%", height: "auto" }}
           />
