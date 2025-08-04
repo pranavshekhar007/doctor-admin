@@ -5,6 +5,8 @@ import { dashboardDetailsServ } from "../../services/user.service";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 function Dashboard() {
   const [statics, setStatics] = useState(null);
+
+  // const last15DaysArr = details?.appointments?.last15Days || [];
   
    const [details, setDetails] = useState(null);
   const handleDashboardFunc = async () => {
@@ -19,67 +21,65 @@ function Dashboard() {
   }, []);
   const staticsArr = [
     {
-      title: "Total Appointment",
-      count: details?.bookings?.totalBooking,
+      title: "Today Appointments",
+      count: details?.appointments?.today || 0,
       bgColor: "#6777EF",
       img: "https://cdn-icons-png.flaticon.com/128/7322/7322293.png",
       subMenu: [
         {
-          title: "Active",
-          count: details?.bookings?.activeBooking,
+          title: "Confirmed",
+          count: details?.appointments?.confirmed || 0,
           bgColor: "#63ED7A",
         },
         {
-          title: "Completed",
-          count: details?.bookings?.bookingCompleted,
+          title: "Pending",
+          count: details?.appointments?.pending || 0,
           bgColor: "#FFA426",
         },
       ],
     },
     {
-      // title: "Total Users",
       title: "Total Reviews",
-      count: details?.users?.totalUser,
+      count: details?.reviews?.total || 0,
       bgColor: "#6777EF",
       img: "https://cdn-icons-png.flaticon.com/128/1077/1077114.png",
       subMenu: [
         {
-          title: "Verified",
-          count: details?.users?.activeUser,
+          title: "New",
+          count: details?.reviews?.new || 0,
           bgColor: "#63ED7A",
         },
         {
-          title: "Incomplete",
-          count: details?.users?.inactiveUser,
+          title: "Unread",
+          count: details?.reviews?.unread || 0,
           bgColor: "#FFA426",
         },
       ],
     },
     {
-      // title: "Total Products",
       title: "Blog Views",
-      count: details?.products?.totalProduct,
+      count: details?.blogs?.totalViews || 0,
       bgColor: "#6777EF",
       img: "https://cdn-icons-png.flaticon.com/128/3514/3514491.png",
-      subMenu: [
-        {
-          title: "Single",
-          count: details?.products?.singleProduct,
-          bgColor: "#63ED7A",
-        },
-        {
-          title: "Combo",
-          count: details?.products?.comboProduct,
-          bgColor: "#FFA426",
-        },
-      ],
+      subMenu: [],
     },
   ];
+  
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28",];
   const data = [
-    { status: "Active", value: details?.bookings?.activeBooking },
-    { status: "Completed", value: details?.bookings?.bookingCompleted },
-    { status: "Cancelled", value: details?.bookings?.totalBooking - details?.bookings?.activeBooking },
+    {
+      status: "Confirmed",
+      value: details?.appointments?.confirmed || 0,
+    },
+    {
+      status: "Pending",
+      value: details?.appointments?.pending || 0,
+    },
+    // Uncomment the next block if you want to show "Rejected"
+    // {
+    //   status: "Rejected",
+    //   value: details?.appointments?.rejected || 0,
+    // },
   ]
   return (
     <div className="bodyContainer">
@@ -137,9 +137,9 @@ function Dashboard() {
             <div className="row px-2 mt-2">
             <div className="col-7">
               <div className=" rounded shadow-sm p-4">
-                <h5>Last 15 day bookings</h5>
+                <h5>Last 15 day Appointments</h5>
                 <div className="d-flex justify-content-between">
-                  {details?.last15DaysBookings?.map((v, i) => {
+                  {details?.appointments?.last15Days.map((v, i) => {
                     return (
                       <div
                       // onClick={()=>navigate("/all-booking/"+v?.mongoDate)}
@@ -155,7 +155,7 @@ function Dashboard() {
                       >
                         <div
                           style={{
-                            height: v?.noOfBookings * 3 + "px",
+                            height: v?.noOfAppointments * 3 + "px",
                             width: "100%",
                             background: "#139F01",
                             borderRadius: "12px",
@@ -175,11 +175,11 @@ function Dashboard() {
                               position: "absolute",
                               left: "50%",
                               // top: "50%",
-                              bottom:"120px",
+                              bottom:"90px",
                               transform: "translate(-50%, -50%) rotate(180deg)", 
                             }}
                           >
-                            {v?.date}, Bookings : {v?.noOfBookings}
+                            {v?.date}, Appontments : {v?.noOfAppointments}
                           </span>
                         </div>
                       </div>

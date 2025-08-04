@@ -82,7 +82,7 @@ function ContactQueryList() {
   };
   return (
     <div className="bodyContainer">
-      <Sidebar selectedMenu="System Support" selectedItem="Contact Query" />
+      <Sidebar selectedMenu="Setting" selectedItem="Contact Query" />
       <div className="mainContainer">
         <TopNav />
         <div className="p-lg-4 p-md-3 p-2">
@@ -149,17 +149,16 @@ function ContactQueryList() {
                       >
                         Sr. No
                       </th>
-                      <th className="text-center py-3">First Name</th>
-                      <th className="text-center py-3">Last Name</th>
-                      <th className="text-center py-3">Contact Number</th>
+                      <th className="text-center py-3">Name</th>
+                      <th className="text-center py-3">Email</th>
                       <th className="text-center py-3">Message</th>
 
-                      <th
+                      {/* <th
                         className="text-center py-3 "
                         style={{ borderRadius: "0px 30px 30px 0px" }}
                       >
                         Category
-                      </th>
+                      </th> */}
                     </tr>
                     <div className="py-2"></div>
                     {showSkelton
@@ -199,13 +198,10 @@ function ContactQueryList() {
                                 <td className="text-center">{i + 1}</td>
 
                                 <td className="font-weight-600 text-center">
-                                  {v?.firstName}
+                                  {v?.fullName}
                                 </td>
                                 <td className="font-weight-600 text-center">
-                                  {v?.lastName}
-                                </td>
-                                <td className="font-weight-600 text-center">
-                                  {v?.contactNumber}
+                                  {v?.email}
                                 </td>
                                 <td className="font-weight-600 text-center d-flex justify-content-center">
                                   <div
@@ -219,9 +215,9 @@ function ContactQueryList() {
                                     <p className="mb-0">{v?.message}</p>
                                   </div>
                                 </td>
-                                <td className="text-center">
+                                {/* <td className="text-center">
                                   {renderCategory(v?.category)}
-                                </td>
+                                </td> */}
                               </tr>
                               <div className="py-2"></div>
                             </>

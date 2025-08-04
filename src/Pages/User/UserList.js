@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../Components/Sidebar";
 import TopNav from "../../Components/TopNav";
-import {
-  getCategoryServ,
-  addCategoryServ,
-  deleteCategoryServ,
-  updateCategoryServ,
-} from "../../services/category.service";
+
 import {
   getUserListServ,
   deleteUserServ,
@@ -52,12 +47,12 @@ function UserList() {
       bgColor: "#6777EF",
     },
     {
-      title: "Completed Profile",
+      title: "Active Profile",
       count: statics?.activeCount,
       bgColor: "#63ED7A",
     },
     {
-      title: "Incomplete Profile",
+      title: "Inactive Profile",
       count: statics?.inactiveCount,
       bgColor: "#FFA426",
     },
@@ -199,9 +194,9 @@ function UserList() {
                       >
                         Sr. No
                       </th>
-                      <th className="text-center py-3">Profile </th>
+                      {/* <th className="text-center py-3">Profile </th> */}
                       <th className="text-center py-3">Full Name</th>
-                      <th className="text-center py-3">Phone No.</th>
+                      {/* <th className="text-center py-3">Phone No.</th> */}
                       <th className="text-center py-3">Email</th>
                       <th className="text-center py-3">Status</th>
 
@@ -254,45 +249,45 @@ function UserList() {
                                     i +
                                     1}
                                 </td>
-                                <td className="text-center">
+                                {/* <td className="text-center">
                                   <img
                                     src={v?.profilePic}
                                     style={{ height: "30px" }}
                                   />
-                                </td>
+                                </td> */}
                                 <td className="font-weight-600 text-center">
-                                  {v?.firstName + " " + v?.lastName}
+                                  {v?.name}
                                 </td>
-                                <td className="font-weight-600 text-center">
+                                {/* <td className="font-weight-600 text-center">
                                   {v?.phone}
-                                </td>
+                                </td> */}
                                 <td className="font-weight-600 text-center">
                                   {v?.email}
                                 </td>
                                 <td className="text-center">
-                                  {v?.profileStatus == "completed" ? (
+                                  {v?.status ? (
                                     <div
                                       className="badge py-2"
                                       style={{ background: "#63ED7A" }}
                                     >
-                                      Varified
+                                      Active
                                     </div>
                                   ) : (
                                     <div
                                       className="badge py-2 "
                                       style={{ background: "#FFA426" }}
                                     >
-                                      Incomplete
+                                      Inactive
                                     </div>
                                   )}
                                 </td>
                                 <td className="text-center">
-                                  <a
+                                  {/* <a
                                     onClick={() => handleViewCart(v?._id)}
                                     className="btn btn-info mx-2 text-light shadow-sm"
                                   >
                                     View Cart
-                                  </a>
+                                  </a> */}
 
                                   <a
                                     onClick={() => handleDeleteUserFunc(v?._id)}

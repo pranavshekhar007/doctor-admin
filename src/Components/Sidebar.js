@@ -20,12 +20,16 @@ function Sidebar({ selectedMenu, selectedItem }) {
     },
     {
       menuIcon: "https://cdn-icons-png.flaticon.com/128/1994/1994075.png",
-      menu: "Apppointment",
+      menu: "Apppointment Management",
       subMenu: [
         {
           name: "Apppointments",
           path: "/appointment-list",
         },
+        // {
+        //   name: "Add Appointment",
+        //   path: "/add-appointment",
+        // },
         // {
         //   name: "Bulk Order",
         //   path: "/bulk-order-list",
@@ -45,10 +49,10 @@ function Sidebar({ selectedMenu, selectedItem }) {
     //       name: "Combo Packs",
     //       path: "/combo-product-list",
     //     },
-    //     {
-    //       name: "Add Product",
-    //       path: "/add-product",
-    //     },
+        // {
+        //   name: "Add Product",
+        //   path: "/add-product",
+        // },
     //     {
     //       name: "Add Combo Packs",
     //       path: "/add-combo-product",
@@ -102,8 +106,12 @@ function Sidebar({ selectedMenu, selectedItem }) {
       menu: "Blogs & Stories",
       subMenu: [
         {
-          name: "Blogs & Stories",
-          path: "/user-list",
+          name: "Blogs",
+          path: "/blogs-list",
+        },
+        {
+          name: "Add Blogs",
+          path: "/add-blog",
         },
       ],
     },
@@ -111,17 +119,21 @@ function Sidebar({ selectedMenu, selectedItem }) {
       menuIcon: "https://cdn-icons-png.flaticon.com/128/3524/3524659.png",
       menu: "Setting",
       subMenu: [
+        // {
+        //   name: "Profile",
+        //   path: "/user-list",
+        // },
+        // {
+        //   name: "Clinic Info",
+        //   path: "/user-list",
+        // },
+        // {
+        //   name: "Notification",
+        //   path: "/user-list",
+        // },
         {
-          name: "Profile",
-          path: "/user-list",
-        },
-        {
-          name: "Clinic Info",
-          path: "/user-list",
-        },
-        {
-          name: "Notification",
-          path: "/user-list",
+          name: "Contact Query",
+          path: "/contact-query",
         },
       ],
     },
@@ -188,10 +200,10 @@ function Sidebar({ selectedMenu, selectedItem }) {
     //       name: "FAQs",
     //       path: "/faq-user-list",
     //     },
-    //     {
-    //       name: "Contact Query",
-    //       path: "/contact-query",
-    //     },
+        // {
+        //   name: "Contact Query",
+        //   path: "/contact-query",
+        // },
     //   ],
     // },
     // {

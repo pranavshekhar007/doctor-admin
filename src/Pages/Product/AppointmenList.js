@@ -58,7 +58,7 @@ function AppointmentList() {
       bgColor: "#6777EF",
     },
     {
-      title: "Complete Appointments",
+      title: "Confirmed Appointments",
       count: statics?.confirmedCount,
       bgColor: "#63ED7A",
     },
@@ -83,22 +83,22 @@ function AppointmentList() {
         id: id,
         status: "confirmed",
       });
-  
+
       toast.success("Appointment confirmed!");
-  
+
       handleGetAppointmentFunc();
     } catch (err) {
       toast.error("Failed to confirm appointment");
     }
   };
-  
+
   const handleRejectAppointment = async (id) => {
     try {
       await updateAppointmentServ({
         id: id,
         status: "rejected",
       });
-  
+
       toast.success("Appointment rejected!");
 
       handleGetAppointmentFunc();
@@ -106,7 +106,6 @@ function AppointmentList() {
       toast.error("Failed to reject appointment");
     }
   };
-  
 
   const [isLoading, setIsLoading] = useState(false);
   const [editFormData, setEditFormData] = useState({
@@ -218,7 +217,10 @@ function AppointmentList() {
   };
   return (
     <div className="bodyContainer">
-      <Sidebar selectedMenu="Apppointment" selectedItem="Apppointments" />
+      <Sidebar
+        selectedMenu="Apppointment Management"
+        selectedItem="Apppointments"
+      />
       <div className="mainContainer">
         <TopNav />
         <div className="p-lg-4 p-md-3 p-2">
@@ -266,20 +268,23 @@ function AppointmentList() {
                 />
               </div>
             </div>
-            <div className="col-lg-2 mb-2  col-md-6 col-12">
+            <div className="col-lg-2 mb-2 col-md-6 col-12">
               <div>
                 <select
                   className="form-control borderRadius24"
+                  value={payload.status}
                   onChange={(e) =>
                     setPayload({ ...payload, status: e.target.value })
                   }
                 >
                   <option value="">Select Status</option>
-                  <option value={true}>Active</option>
-                  <option value={false}>Inactive</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="pending">Pending</option>
+                  <option value="rejected">Rejected</option>
                 </select>
               </div>
             </div>
+
             {/* <div className="col-lg-2 mb-2 col-md-6 col-12">
               <select
                 className="form-control borderRadius24"
@@ -297,15 +302,15 @@ function AppointmentList() {
               </select>
             </div> */}
 
-            <div className="col-lg-2 mb-2 col-md-6 col-12">
+            {/* <div className="col-lg-2 mb-2 col-md-6 col-12">
               <button
                 className="btn w-100 borderRadius24 text-light"
                 style={{ background: "#c34b36" }}
-                onClick={() => navigate("/add-product")}
+                onClick={() => navigate("/add-appointment")}
               >
                 Add Appointment
               </button>
-            </div>
+            </div> */}
             {/* <div className="col-lg-3 mb-2 col-md-6 col-12">
               <button
                 className="btn w-100 borderRadius24 text-light p-2"
@@ -457,19 +462,11 @@ function AppointmentList() {
                                 className="btn btn-sm mx-1"
                                 title="Edit"
                                 onClick={() =>
-                                  navigate(`/product-details/${v?._id}`)
+                                  navigate(`/appointment-edit/${v?._id}`)
                                 }
                               >
                                 ✏️
                               </button>
-                              {/* <button
-                                    className="btn btn-sm btn-outline-info"
-                                    onClick={() =>
-                                      navigate(`/product-details/${v?._id}`)
-                                    }
-                                  >
-                                    View
-                                  </button> */}
 
                               <button
                                 className="btn btn-sm mx-1"

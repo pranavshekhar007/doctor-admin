@@ -12,7 +12,7 @@ import ProductTypeList from '../Pages/Product/ProductTypeList';
 import TaxList from '../Pages/Tax/TaxList';
 import ProductManufactureLocactionList from '../Pages/Product/ProductManufactureLocationList';
 // import ProductList from '../Pages/Product/ProductList';
-import AddProduct from '../Pages/Product/AddProduct';
+// import AddProduct from '../Pages/Product/AddAppointment';
 import UserFaq from '../Pages/Support/Faq/UserFaq';
 import UserTermsAndCondition from '../Pages/Support/TermsAndCondition/UserTermsAndCondition';
 import ProductUpdateStep2 from '../Pages/Product/ProductUpdateStep2';
@@ -54,6 +54,11 @@ import ChitSubscription from '../Pages/Subscription/ChitSubscription';
 import SubscriptionChitDetails from '../Pages/Subscription/SubscriptionDetails';
 import SubscriptionChitUsersList from '../Pages/Subscription/SubscriptionChitUsersList';
 import AppointmentList from '../Pages/Product/AppointmenList';
+import AddAppointment from '../Pages/Product/AddAppointment';
+import AppointmentEditForm from '../Pages/Product/AppointmentEditForm';
+import BlogList from '../Pages/Blog/BlogList';
+import AddBlog from '../Pages/Blog/AddBlog';
+import UpdateBlog from '../Pages/Blog/UpdateBlog';
 
 
 function AuthenticatedRoutes() {
@@ -90,7 +95,7 @@ function AuthenticatedRoutes() {
 
         {/* product   */}
         {/* <Route path="/product-list" element={<ProductList/>}/> */}
-        <Route path="/add-product" element={<AddProduct/>}/>
+        {/* <Route path="/add-product" element={<AddProduct/>}/> */}
         <Route path="/product-approval/:id" element={<ProductApproval/>}/>
         <Route path="/update-product-step1/:id" element={<ProductUpdateStep1/>}/>
         <Route path="/update-product-step2/:id" element={<ProductUpdateStep2/>}/>
@@ -162,6 +167,15 @@ function AuthenticatedRoutes() {
 
         {/* Doctors Route  */}
         <Route path='/appointment-list' element={<AppointmentList />} />
+        <Route path='/add-appointment' element={<AddAppointment />} />
+        <Route path="/appointment-edit/:id" element={<AppointmentEditForm />} />
+
+        {/* blog */}
+        <Route path="/blogs-list" element={<BlogList/>}/>
+        <Route path="/add-blog" element={<AddBlog/>}/>
+        <Route path="/update-blog/:id" element={<UpdateBlog/>}/>
+
+
 
     </Routes>
   )
