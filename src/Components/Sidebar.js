@@ -97,7 +97,7 @@ function Sidebar({ selectedMenu, selectedItem }) {
       subMenu: [
         {
           name: "Reviews",
-          path: "/user-list",
+          path: "/review",
         },
       ],
     },

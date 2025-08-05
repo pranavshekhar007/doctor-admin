@@ -61,6 +61,7 @@ import AddBlog from "../Pages/Blog/AddBlog";
 import UpdateBlog from "../Pages/Blog/UpdateBlog";
 import ForgotPasswordPage from "../Pages/Password/ForgotPasswordPage";
 import ResetPasswordPage from "../Pages/Password/ResetPasswordPage";
+import ReviewPageList from "../Pages/Review/ReviewPageList";
 
 function AuthenticatedRoutes() {
   return (
@@ -200,6 +201,7 @@ function AuthenticatedRoutes() {
       <Route path="/blogs-list" element={<BlogList />} />
       <Route path="/add-blog" element={<AddBlog />} />
       <Route path="/update-blog/:id" element={<UpdateBlog />} />
+      <Route path="/review" element={<ReviewPageList />} />
 
       {/* other routes here */}
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />

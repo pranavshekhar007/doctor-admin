@@ -254,7 +254,7 @@ function AppointmentList() {
             })}
           </div>
           <div className="row m-0 p-0 d-flex align-items-center my-4 topActionForm">
-            <div className="col-lg-4 mb-2 col-md-12 col-12">
+            <div className="col-lg-6 mb-2 col-md-12 col-12">
               <h3 className="mb-0 text-bold text-secondary">Appointments</h3>
             </div>
             <div className="col-lg-4 mb-2 col-md-12 col-12">
