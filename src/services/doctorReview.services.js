@@ -14,7 +14,7 @@ const getConfig = () => {
 
 export const getReviewListServ = async (formData) => {
   try {
-    const response = await axios.post(BASE_URL + "doctor-review/list", formData, getConfig());
+    const response = await axios.post(BASE_URL + "doctor-review/list", formData);
     return response;
   } catch (error) {
     console.error("Error fetching reviews:", error);

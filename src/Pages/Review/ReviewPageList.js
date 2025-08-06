@@ -14,12 +14,13 @@ import NoRecordFound from "../../Components/NoRecordFound";
 import "react-loading-skeleton/dist/skeleton.css";
 import "react-toastify/dist/ReactToastify.css";
 import { getUserListServ } from "../../services/user.service";
+import Pagination from "../../Components/Pagination";
 
 function ReviewPageList() {
   const [list, setList] = useState([]);
   const [statics, setStatics] = useState(null);
   const [payload, setPayload] = useState({
-    searchKey: "",
+    type: "",
     status: "",
     pageNo: 1,
     pageCount: 10,
@@ -242,23 +243,26 @@ function ReviewPageList() {
           </div>
           {/* Search/filter/add */}
           <div className="row m-0 p-0 d-flex align-items-center my-4 topActionForm">
-            <div className="col-lg-4 mb-2 col-md-12 col-12">
+            <div className="col-lg-5 mb-2 col-md-12 col-12">
               <h3 className="mb-0 text-bold text-secondary">Reviews</h3>
             </div>
-            <div className="col-lg-4 mb-2 col-md-12 col-12">
-              <div>
-                <input
-                  className="form-control borderRadius24"
-                  placeholder="Search"
-                  onChange={(e) =>
-                    setPayload({
-                      ...payload,
-                      searchKey: e.target.value,
-                    })
-                  }
-                />
-              </div>
+            <div className="col-lg-3 mb-2 col-md-12 col-12">
+              {/* <label className="fw-semibold text-secondary mb-1">
+                Filter by Type
+              </label> */}
+              <select
+                className="form-control borderRadius24"
+                value={payload.type || ""}
+                onChange={(e) =>
+                  setPayload({ ...payload, type: e.target.value, pageNo: 1 })
+                }
+              >
+                <option value="">All Types</option>
+                <option value="text">Text</option>
+                <option value="video">Video</option>
+              </select>
             </div>
+
             <div className="col-lg-2 mb-2">
               <select
                 className="form-control borderRadius24"
@@ -435,6 +439,17 @@ function ReviewPageList() {
                     )}
                   </tbody>
                 </table>
+                <Pagination
+                  totalPages={totalPages}
+                  currentPage={payload.pageNo}
+                  onPageChange={(page) =>
+                    setPayload({ ...payload, pageNo: page })
+                  }
+                  pageCount={payload.pageCount}
+                  onPageCountChange={(pc) =>
+                    setPayload({ ...payload, pageCount: pc, pageNo: 1 })
+                  }
+                />
               </div>
             </div>
           </div>

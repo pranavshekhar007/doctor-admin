@@ -21,6 +21,7 @@ import {
   getAppointmentListServ,
   updateAppointmentServ,
 } from "../../services/appointment.services";
+import Pagination from "../../Components/Pagination";
 function AppointmentList() {
   const navigate = useNavigate();
   const [list, setList] = useState([]);
@@ -163,12 +164,6 @@ function AppointmentList() {
       setTotalPages(pages);
     }
   }, [statics, payload.pageCount]);
-
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setPayload({ ...payload, pageNo: newPage });
-    }
-  };
 
   const handleBulkUpload = async () => {
     if (!bulkForm.name || !bulkForm.file) {
@@ -488,94 +483,17 @@ function AppointmentList() {
                         ))}
                   </tbody>
                 </table>
-                <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5 px-3 py-3 mt-4">
-                  <div className="d-flex align-items-center gap-2">
-                    <span className="fw-semibold text-secondary">Show</span>
-                    <select
-                      className="form-select form-select-sm custom-select"
-                      value={payload.pageCount}
-                      onChange={(e) =>
-                        setPayload({
-                          ...payload,
-                          pageCount: parseInt(e.target.value),
-                          pageNo: 1,
-                        })
-                      }
-                    >
-                      {[10, 25, 50, 100].map((v) => (
-                        <option key={v} value={v}>
-                          {v}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <nav>
-                    <ul className="pagination pagination-sm mb-0 custom-pagination">
-                      <li
-                        className={`page-item ${
-                          payload.pageNo === 1 ? "disabled" : ""
-                        }`}
-                      >
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageChange(payload.pageNo - 1)}
-                        >
-                          &lt;
-                        </button>
-                      </li>
-
-                      {[...Array(totalPages)].map((_, i) => {
-                        const page = i + 1;
-                        if (
-                          page === 1 ||
-                          page === totalPages ||
-                          (page >= payload.pageNo - 1 &&
-                            page <= payload.pageNo + 1)
-                        ) {
-                          return (
-                            <li
-                              key={page}
-                              className={`page-item ${
-                                payload.pageNo === page ? "active" : ""
-                              }`}
-                            >
-                              <button
-                                className="page-link"
-                                onClick={() => handlePageChange(page)}
-                              >
-                                {page}
-                              </button>
-                            </li>
-                          );
-                        } else if (
-                          (page === payload.pageNo - 2 && page > 2) ||
-                          (page === payload.pageNo + 2 && page < totalPages - 1)
-                        ) {
-                          return (
-                            <li key={page} className="page-item disabled">
-                              <span className="page-link">...</span>
-                            </li>
-                          );
-                        }
-                        return null;
-                      })}
-
-                      <li
-                        className={`page-item ${
-                          payload.pageNo === totalPages ? "disabled" : ""
-                        }`}
-                      >
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageChange(payload.pageNo + 1)}
-                        >
-                          &gt;
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+                <Pagination
+                  totalPages={totalPages}
+                  currentPage={payload.pageNo}
+                  onPageChange={(page) =>
+                    setPayload({ ...payload, pageNo: page })
+                  }
+                  pageCount={payload.pageCount}
+                  onPageCountChange={(pc) =>
+                    setPayload({ ...payload, pageCount: pc, pageNo: 1 })
+                  }
+                />
 
                 {list.length == 0 && !showSkelton && <NoRecordFound />}
               </div>
